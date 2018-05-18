@@ -41,8 +41,16 @@ bundle install
 ```
 #app/models/user.rb
 
-class User < ApplicationRecord
- has_secure_password
+class User
+  include Mongoid::Document
+  include ActiveModel::SecurePassword
+
+  field :name, type: String
+  field :login, type: String
+  field :password_digest, type: String
+
+  has_secure_password
+
 end
 ```
 ### 3. Codificación y decodificación de tokens JWT
